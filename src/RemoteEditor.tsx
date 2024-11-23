@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-
 const Editor = lazy(() => import("subContainer/Editor"));
 
 export default function RemoteEditor() {
