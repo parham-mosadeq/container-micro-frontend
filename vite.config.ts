@@ -13,7 +13,7 @@ export default defineConfig({
       remotes: {
         subContainer: "http://localhost:5002/dist/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "rxjs"],
     }),
   ],
   preview: { strictPort: false },
