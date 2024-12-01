@@ -18,7 +18,7 @@ export default function RemoteEditor() {
           })();
         }
       });
-
+    console.log("after");
     return () => {
       subscription.unsubscribe();
     };
