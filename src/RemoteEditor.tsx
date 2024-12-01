@@ -4,15 +4,24 @@ import messageBroker from "subContainer/EditorMessageBroker";
 
 export default function RemoteEditor() {
   useEffect(() => {
-    messageBroker
+    console.log("start use effect - host app");
+
+    const subscription = messageBroker
       .subscribeToMessages()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((msg: Record<string, any>) => {
-        if (msg.event === "get_token") {
-          console.log(msg, "hooorayyy");
-          msg.callback(true);
+      .subscribe(({ event, callback }: any) => {
+        console.log("use effect - host app");
+
+        if (event === "getToken") {
+          (async () => {
+            const authData = "authenticated";
+            callback(authData);
+          })();
         }
       });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (
